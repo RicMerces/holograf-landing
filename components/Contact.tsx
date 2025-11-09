@@ -28,7 +28,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-br from-gray-900 to-black text-white">
+    <section id="contact" className="py-24 bg-gradient-to-br from-gray-900 to-black text-white scroll-mt-16">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="mb-6 text-white">

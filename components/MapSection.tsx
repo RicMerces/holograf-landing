@@ -2,7 +2,7 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 
 export default function MapSection() {
   return (
-    <section className="py-24 bg-white">
+    <section id="map-section" className="py-24 bg-white scroll-mt-16">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="mb-6 text-black">

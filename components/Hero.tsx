@@ -8,7 +8,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center text-white px-6 py-20 overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center text-white px-6 pt-20 pb-20 overflow-hidden">
       {/* Background Gradient Image */}
       <div className="absolute inset-0 z-0">
         <img 
