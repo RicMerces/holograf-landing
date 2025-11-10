@@ -1,8 +1,7 @@
-"use client";
 
 import * as React from "react";
-import * as DialogPrimitive from "@radix-ui/react-dialog@1.1.6";
-import { XIcon } from "lucide-react@0.487.0";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { XIcon } from "lucide-react";
 
 import { cn } from "./utils";
 
@@ -43,6 +42,28 @@ function DialogOverlay({
       )}
       {...props}
     />
+  );
+}
+
+// Componente especial para fullscreen (sem overlay)
+function DialogContentFullscreen({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Content>) {
+  return (
+    <DialogPrimitive.Portal data-slot="dialog-portal">
+      <DialogPrimitive.Content
+        data-slot="dialog-content"
+        className={cn(
+          "fixed inset-0 z-[9999] w-screen h-screen p-0 m-0 rounded-none bg-white",
+          className,
+        )}
+        {...props}
+      >
+        {children}
+      </DialogPrimitive.Content>
+    </DialogPrimitive.Portal>
   );
 }
 
@@ -125,6 +146,7 @@ export {
   Dialog,
   DialogClose,
   DialogContent,
+  DialogContentFullscreen,
   DialogDescription,
   DialogFooter,
   DialogHeader,

@@ -1,11 +1,10 @@
-import { useState } from 'react';
-import Autoplay from 'embla-carousel-autoplay@8.6.0';
+import { useState, useEffect } from 'react';
+import Autoplay from 'embla-carousel-autoplay';
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, type CarouselApi } from './ui/carousel';
 
 export default function SystemCarousel() {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
 
   const pillars = [
     {
@@ -39,16 +38,15 @@ export default function SystemCarousel() {
     Autoplay({ delay: 4000, stopOnInteraction: true })
   );
 
-  useState(() => {
+  useEffect(() => {
     if (!api) return;
 
-    setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap());
 
     api.on('select', () => {
       setCurrent(api.selectedScrollSnap());
     });
-  });
+  }, [api]);
 
   return (
     <section id="system-carousel" className="py-24 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">

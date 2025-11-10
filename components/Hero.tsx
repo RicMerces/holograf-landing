@@ -1,5 +1,5 @@
-import backgroundImage from 'figma:asset/01951521cd2d817d631da7c117af8613d6a4c486.png';
-import billboardImage from 'figma:asset/ca802bf343a32dc2275edd39d379cda046a3a5d0.png';
+import backgroundImage from '../assets/01951521cd2d817d631da7c117af8613d6a4c486.png';
+import billboardImage from '../assets/ca802bf343a32dc2275edd39d379cda046a3a5d0.png';
 
 export default function Hero() {
   const scrollToSystem = () => {

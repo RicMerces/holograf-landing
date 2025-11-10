@@ -1,5 +1,4 @@
-import { ImageWithFallback } from './figma/ImageWithFallback';
-import holografLogo from 'figma:asset/4881e0ab60b4372f8b318883b1eb1059789049be.png';
+import holografLogo from '../assets/4881e0ab60b4372f8b318883b1eb1059789049be.png';
 
 export default function Footer() {
   return (

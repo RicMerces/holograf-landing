@@ -1,21 +1,21 @@
 import { useState } from "react";
-import Autoplay from "embla-carousel-autoplay@8.6.0";
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "./ui/carousel";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import havaianasLogo from "figma:asset/839f5d51d3fef4f21865417e5f1f7178bfa8c956.png";
-import vivoLogo from "figma:asset/2c907788f01d024f109cdf398151314319ad63d2.png";
-import tvGloboLogo from "figma:asset/b8c412c6c628a5d9b2e02ef03a37ce029612657c.png";
-import governoBahiaLogo from "figma:asset/275f5225636390c0e04809eb68489176488e6658.png";
-import oiLogo from "figma:asset/9533105f705b6e06ea46800d0f03d177d8c0619a.png";
-import glightLogo from "figma:asset/64064f519650048e7be2d300efe96a4692c3ac74.png";
-import boulevardLogo from "figma:asset/258eb5c52814d6e7514e4facb8ef7e64fe3bc56a.png";
-import arezzoLogo from "figma:asset/9fccedf26128bc5566621ac62040e9b885422804.png";
-import iberostarLogo from "figma:asset/78d169d1528d31ed71b62ecd5bd1bfc3113888c1.png";
-import laMarquezzoLogo from "figma:asset/153b52ff6119fb1c15db0165cceb3a0f3d8ba9cd.png";
+import havaianasLogo from "../assets/839f5d51d3fef4f21865417e5f1f7178bfa8c956.png";
+import vivoLogo from "../assets/2c907788f01d024f109cdf398151314319ad63d2.png";
+import tvGloboLogo from "../assets/b8c412c6c628a5d9b2e02ef03a37ce029612657c.png";
+import governoBahiaLogo from "../assets/275f5225636390c0e04809eb68489176488e6658.png";
+import oiLogo from "../assets/9533105f705b6e06ea46800d0f03d177d8c0619a.png";
+import glightLogo from "../assets/64064f519650048e7be2d300efe96a4692c3ac74.png";
+import boulevardLogo from "../assets/258eb5c52814d6e7514e4facb8ef7e64fe3bc56a.png";
+import arezzoLogo from "../assets/9fccedf26128bc5566621ac62040e9b885422804.png";
+import iberostarLogo from "../assets/78d169d1528d31ed71b62ecd5bd1bfc3113888c1.png";
+import laMarquezzoLogo from "../assets/153b52ff6119fb1c15db0165cceb3a0f3d8ba9cd.png";
 
 export default function MarketSlider() {
   const markets = [

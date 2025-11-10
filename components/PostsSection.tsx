@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
 import { Button } from './ui/button';
 import { MapPin } from 'lucide-react';
+import AllPostsScreen from './AllPostsScreen';
 
 interface Poste {
   id: number;
@@ -17,7 +17,7 @@ interface Poste {
 
 export default function PostsSection() {
   const [hoveredPoste, setHoveredPoste] = useState<number | null>(null);
-  const [hoveredPosteInModal, setHoveredPosteInModal] = useState<number | null>(null);
+  const [isAllPostsOpen, setIsAllPostsOpen] = useState(false);
 
   // Todos os postes com dados reais
   const allPostes: Poste[] = [
@@ -401,59 +401,22 @@ export default function PostsSection() {
 
         {/* Botão "Veja todos" */}
         <div className="text-center">
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button 
-                variant="outline" 
-                className="bg-orange-600 hover:bg-orange-700 text-white border-orange-600 px-8 py-6 text-lg font-semibold"
-              >
-                Veja todos os postes
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
-              <DialogHeader>
-                <DialogTitle className="text-2xl text-center mb-6">
-                  Todos os nossos postes
-                </DialogTitle>
-              </DialogHeader>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {allPostes.map((poste) => (
-                  <div
-                    key={poste.id}
-                    className="relative group cursor-pointer overflow-hidden rounded-xl border border-gray-300 bg-gray-100"
-                    onMouseEnter={() => setHoveredPosteInModal(poste.id)}
-                    onMouseLeave={() => setHoveredPosteInModal(null)}
-                  >
-                    {/* Imagem do poste */}
-                    <div className="aspect-[4/3] overflow-hidden">
-                      <img
-                        src={poste.image}
-                        alt={`Poste ${poste.code}`}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                        onError={(e) => {
-                          // Fallback para imagem placeholder
-                          e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23333" width="400" height="300"/%3E%3Ctext fill="%23999" x="50%25" y="50%25" text-anchor="middle" dy=".3em" font-size="20"%3E' + poste.code + '%3C/text%3E%3C/svg%3E';
-                        }}
-                      />
-                    </div>
-
-                    {/* Overlay com informações no hover */}
-                    {hoveredPosteInModal === poste.id && (
-                      <div className="absolute inset-0 bg-black/90 flex flex-col items-center justify-center p-4 transition-all duration-300 z-10">
-                        <MapPin className="w-8 h-8 text-orange-500 mb-3" />
-                        <p className="text-white font-semibold text-lg mb-1">{poste.neighborhood}</p>
-                        <p className="text-gray-300 text-sm text-center mb-2">{poste.location}</p>
-                        <p className="text-gray-400 text-xs text-center mb-2">{poste.reference}</p>
-                        <p className="text-gray-500 text-xs text-center">{poste.proximity}</p>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </DialogContent>
-          </Dialog>
+          <Button 
+            onClick={() => setIsAllPostsOpen(true)}
+            variant="outline" 
+            className="bg-orange-600 hover:bg-orange-700 text-white border-orange-600 px-8 py-6 text-lg font-semibold"
+          >
+            Veja todos os postes
+          </Button>
         </div>
       </div>
+
+      {/* Tela fullscreen com todos os postes */}
+      <AllPostsScreen
+        postes={allPostes}
+        isOpen={isAllPostsOpen}
+        onClose={() => setIsAllPostsOpen(false)}
+      />
     </section>
   );
 }
