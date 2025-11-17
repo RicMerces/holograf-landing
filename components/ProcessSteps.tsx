@@ -21,13 +21,13 @@ export default function ProcessSteps() {
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-black">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="mb-6 text-black">
+          <h3 className="mb-6 text-white">
             Um sistema completo, sem preocupação.
-          </h2>
-          <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+          </h3>
+          <p className="text-gray-300 text-lg max-w-3xl mx-auto">
             Nossos planos anuais são desenhados para garantir sua presença constante.
           </p>
         </div>
@@ -35,13 +35,13 @@ export default function ProcessSteps() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {steps.map((step, index) => (
             <div key={index} className="relative">
-              <div className="bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 rounded-2xl p-8 h-full hover:border-orange-500 transition-all duration-300 hover:shadow-xl">
+              <div className="bg-gradient-to-br from-gray-900/80 via-gray-950/90 to-black border-2 border-gray-800/40 rounded-2xl p-8 h-full hover:border-orange-500 transition-all duration-300 hover:shadow-xl backdrop-blur-sm">
                 <div className="flex items-start gap-4 mb-4">
                   <span className="text-5xl">{step.icon}</span>
                   <span className="text-6xl text-orange-500/20">{step.number}</span>
                 </div>
-                <h3 className="mb-3 text-black text-2xl">{step.title}</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <h3 className="mb-3 text-white text-2xl">{step.title}</h3>
+                <p className="text-gray-300 leading-relaxed">
                   {step.description}
                 </p>
               </div>
@@ -58,8 +58,8 @@ export default function ProcessSteps() {
           ))}
         </div>
 
-        <div className="mt-16 bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl p-8 text-center border-2 border-orange-200">
-          <p className="text-gray-800 text-lg">
+        <div className="mt-16 bg-gradient-to-r from-orange-900/30 to-red-900/30 rounded-2xl p-8 text-center border-2 border-orange-800">
+          <p className="text-white text-lg">
             ✨ <strong>Planos anuais com rodízio estratégico</strong> para maximizar o retorno do seu investimento
           </p>
         </div>

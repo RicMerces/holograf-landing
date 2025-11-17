@@ -8,7 +8,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center text-white px-6 pt-20 pb-20 overflow-hidden">
+    <section id="hero" className="relative h-screen flex items-center justify-center text-white px-4 overflow-hidden bg-black">
       {/* Background Gradient Image */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -27,7 +27,7 @@ export default function Hero() {
             <img 
               src={billboardImage} 
               alt="Painel Holograf" 
-              className="w-full max-w-2xl drop-shadow-2xl"
+              className="w-full max-w-5xl drop-shadow-2xl"
             />
           </div>
 

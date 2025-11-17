@@ -28,18 +28,18 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-gradient-to-br from-gray-900 to-black text-white scroll-mt-16">
+    <section id="contact" className="py-24 bg-black text-white scroll-mt-16">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="mb-6 text-white">
+          <h3 className="mb-6 text-white">
             Vamos colocar sua marca na rua?
-          </h2>
+          </h3>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
             Fale com um especialista agora mesmo para receber o mapa completo de localizações e uma proposta de plano anual.
           </p>
         </div>
 
-        <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 md:p-12">
+        <div className="bg-gradient-to-br from-gray-900/80 via-gray-950/90 to-black backdrop-blur-sm border border-gray-800/40 rounded-2xl p-8 md:p-12">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>

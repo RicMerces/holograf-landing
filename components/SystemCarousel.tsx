@@ -8,28 +8,33 @@ export default function SystemCarousel() {
 
   const pillars = [
     {
-      title: 'Cobertura Total',
-      description: 'Menos placas, mais alcance. Estamos nos principais corredores viários.',
+      number: '1',
+      title: 'Cobertura total com menos placas.',
+      description: 'Estamos nos principais corredores viários de Feira. Quem circula, vê.',
       icon: '🗺️'
     },
     {
-      title: 'Quem dirige, olha para frente',
-      description: 'Painéis 100% frontais em canteiros centrais. Sem ângulo morto.',
+      number: '2',
+      title: 'Quem dirige olha para frente.',
+      description: 'Todos os painéis em canteiros centrais, sempre de frente. Sem ângulo morto.',
       icon: '👁️'
     },
     {
-      title: 'Design Arrojado',
-      description: 'Estrutura metálica moderna que valoriza sua marca e chama atenção.',
+      number: '3',
+      title: 'Design arrojado de Painel',
+      description: 'Estrutura metálica moderna que valoriza sua marca e chama atenção na paisagem.',
       icon: '✨'
     },
     {
-      title: 'Destaque Absoluto à Noite',
-      description: 'Iluminação de alta performance. Sua marca em evidência dia e noite.',
+      number: '4',
+      title: 'Destaque Absoluto durante a noite',
+      description: 'Iluminação forte, estável e contínua. Sua marca em evidência dia e noite.',
       icon: '💡'
     },
     {
-      title: 'Rodízio de 90 Dias',
-      description: 'Evita a "cegueira publicitária". Presença constante que grava sua marca na memória.',
+      number: '5',
+      title: 'Rodízio de lonas a cada 90 dias.',
+      description: 'Alto índice de repetição. Presença constante que grava sua marca na memória.',
       icon: '🔄'
     }
   ];
@@ -49,18 +54,18 @@ export default function SystemCarousel() {
   }, [api]);
 
   return (
-    <section id="system-carousel" className="py-24 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="system-carousel" className="py-24 bg-black text-white">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="mb-6 text-white">
-            Visibilidade Estratégica Holograf
-          </h2>
+          <h3 className="mb-6 text-white text-3xl md:text-4xl font-bold">
+            VISIBILIDADE ESTRATÉGICA HOLOGRAF
+          </h3>
           <p className="text-gray-300 text-lg max-w-3xl mx-auto">
             Você não precisa de mais mídia. Você precisa de presença de marca. Nosso sistema entrega impacto hoje e lembrança amanhã.
           </p>
         </div>
 
-        <div className="relative px-12">
+        <div className="relative px-4 md:px-12">
           <Carousel
             opts={{
               align: 'start',
@@ -72,13 +77,26 @@ export default function SystemCarousel() {
           >
             <CarouselContent>
               {pillars.map((pillar, index) => (
-                <CarouselItem key={index}>
-                  <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-12 min-h-[300px] flex flex-col items-center justify-center text-center">
-                    <div className="text-6xl mb-6">{pillar.icon}</div>
-                    <h3 className="mb-4 text-white text-2xl">{pillar.title}</h3>
-                    <p className="text-gray-300 text-lg max-w-xl">
-                      {pillar.description}
-                    </p>
+                <CarouselItem key={index} className="md:basis-full">
+                  <div className="bg-gradient-to-br from-gray-900/80 via-gray-950/90 to-black border border-gray-800/50 rounded-2xl p-6 md:p-10 min-h-[500px] flex flex-col backdrop-blur-sm">
+                    {/* Número grande no topo */}
+                    <div className="flex items-start justify-between mb-4">
+                      <span className="text-9xl md:text-[12rem] font-bold text-white/5 leading-none">{pillar.number}</span>
+                      <div className="text-6xl md:text-7xl">{pillar.icon}</div>
+                    </div>
+                    
+                    {/* Linha laranja divisória */}
+                    <div className="w-full h-0.5 bg-orange-500 mb-6"></div>
+                    
+                    {/* Título e descrição */}
+                    <div className="flex-grow flex flex-col justify-center">
+                      <h3 className="mb-4 text-white text-2xl md:text-3xl font-bold leading-tight">
+                        {pillar.title}
+                      </h3>
+                      <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl">
+                        {pillar.description}
+                      </p>
+                    </div>
                   </div>
                 </CarouselItem>
               ))}

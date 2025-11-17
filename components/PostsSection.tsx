@@ -356,12 +356,12 @@ export default function PostsSection() {
   const mainPostes = allPostes.slice(0, 6);
 
   return (
-    <section id="posts-section" className="py-24 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white scroll-mt-16">
+    <section id="posts-section" className="py-24 bg-black text-white scroll-mt-16">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="mb-6 text-white text-4xl font-bold">
+          <h3 className="mb-6 text-white text-4xl font-bold">
             Veja nossos principais postes
-          </h2>
+          </h3>
         </div>
 
         {/* Grid com 6 postes principais */}
@@ -369,7 +369,7 @@ export default function PostsSection() {
           {mainPostes.map((poste) => (
             <div
               key={poste.id}
-              className="relative group cursor-pointer overflow-hidden rounded-xl border border-gray-700 bg-gray-800/50 backdrop-blur-sm"
+              className="relative group cursor-pointer overflow-hidden rounded-xl border border-gray-800/40 bg-gradient-to-br from-gray-900/80 via-gray-950/90 to-black backdrop-blur-sm"
               onMouseEnter={() => setHoveredPoste(poste.id)}
               onMouseLeave={() => setHoveredPoste(null)}
             >

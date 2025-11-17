@@ -36,12 +36,12 @@ export default function MarketSlider() {
   );
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
-          <h1 className="mb-4 text-black text-[24px]">
+          <h3 className="mb-4 text-white text-[24px]">
             Empresas que já anunciaram/anunciam conosco
-          </h1>
+          </h3>
         </div>
 
         <div className="mt-16">
@@ -60,7 +60,7 @@ export default function MarketSlider() {
                   className="md:basis-1/3 lg:basis-1/5"
                 >
                   <div className="p-2">
-                    <div className="bg-white border-2 border-gray-200 rounded-lg overflow-hidden h-32 flex items-center justify-center hover:border-orange-500 transition-colors duration-300">
+                    <div className="bg-gradient-to-br from-gray-900/80 via-gray-950/90 to-black border-2 border-gray-800/40 rounded-lg overflow-hidden h-32 flex items-center justify-center hover:border-orange-500 transition-colors duration-300 backdrop-blur-sm">
                       <ImageWithFallback
                         src={market.logo}
                         alt={market.name}

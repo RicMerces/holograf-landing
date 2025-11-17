@@ -52,7 +52,7 @@ export default function AllPostsScreen({ postes, isOpen, onClose }: AllPostsScre
             <div className="max-w-7xl mx-auto px-6 py-4">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h2 className="text-3xl font-bold text-gray-900">Todos os Nossos Postes</h2>
+                  <h3 className="text-3xl font-bold text-gray-900">Todos os Nossos Postes</h3>
                   <p className="text-gray-600 mt-1">
                     {filteredPostes.length} de {postes.length} postes
                   </p>

@@ -6,7 +6,40 @@ import { Button } from './ui/button';
 import { Maximize2 } from 'lucide-react';
 import FullscreenMap from './FullscreenMap';
 
-// Fix para os ícones padrão do Leaflet
+// Criar ícone customizado para painéis frontlight
+const createFrontlightIcon = (code: string) => {
+  return L.divIcon({
+    className: 'custom-frontlight-marker',
+    html: `
+      <div style="
+        background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+        width: 32px;
+        height: 32px;
+        border-radius: 50% 50% 50% 0;
+        transform: rotate(-45deg);
+        border: 3px solid white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      ">
+        <div style="
+          transform: rotate(45deg);
+          color: white;
+          font-weight: bold;
+          font-size: 12px;
+          text-align: center;
+        ">FL</div>
+      </div>
+    `,
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32],
+  });
+};
+
+// Fix para os ícones padrão do Leaflet (caso necessário)
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
@@ -384,19 +417,19 @@ export default function MapSection() {
 
   if (!isClient) {
     return (
-      <section id="map-section" className="py-24 bg-white scroll-mt-16">
+      <section id="map-section" className="py-24 bg-black scroll-mt-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="mb-6 text-black">
+            <h3 className="mb-6 text-white">
               Esteja onde seu cliente está:<br />Próximo aos Principais Mercados
-            </h2>
-            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+            </h3>
+            <p className="text-gray-300 text-lg max-w-3xl mx-auto">
               Nossos painéis estão estrategicamente posicionados próximos dos principais mercados atacadistas e supermercados de Feira de Santana.
             </p>
           </div>
-          <div className="mt-12 bg-gray-100 rounded-2xl p-8 shadow-lg">
-            <div className="aspect-video bg-gradient-to-br from-gray-200 to-gray-300 rounded-xl flex items-center justify-center">
-              <p className="text-gray-600">Carregando mapa...</p>
+          <div className="mt-12 bg-gradient-to-br from-gray-900/90 via-gray-950/95 to-black border border-gray-800/40 rounded-2xl p-8 shadow-lg backdrop-blur-sm">
+            <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl flex items-center justify-center">
+              <p className="text-gray-300">Carregando mapa...</p>
             </div>
           </div>
         </div>
@@ -406,18 +439,22 @@ export default function MapSection() {
 
   return (
     <>
-      <section id="map-section" className="py-24 bg-white scroll-mt-16">
+      <section id="map-section" className="py-24 bg-black scroll-mt-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="mb-6 text-black">
+            <h3 className="mb-6 text-white">
               Esteja onde seu cliente está:<br />Próximo aos Principais Mercados
-            </h2>
-            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-              Nossos painéis estão estrategicamente posicionados próximos dos principais mercados atacadistas e supermercados de Feira de Santana.
+            </h3>
+            <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-4">
+              Nossos painéis Frontlight estão estrategicamente posicionados próximos dos principais mercados atacadistas e supermercados de Feira de Santana.
             </p>
+            <div className="flex items-center justify-center gap-2 text-sm text-gray-400">
+              <div className="w-4 h-4 rounded-full bg-orange-500 border-2 border-white"></div>
+              <span>Painéis Frontlight</span>
+            </div>
           </div>
 
-          <div className="mt-12 bg-gray-100 rounded-2xl p-8 shadow-lg">
+          <div className="mt-12 bg-gradient-to-br from-gray-900/90 via-gray-950/95 to-black border border-gray-800/40 rounded-2xl p-8 shadow-lg backdrop-blur-sm">
             <div className="aspect-video rounded-xl overflow-hidden relative">
               <MapContainer
                 center={FEIRA_DE_SANTANA_CENTER}
@@ -433,11 +470,21 @@ export default function MapSection() {
                   <Marker
                     key={index}
                     position={[poste.lat, poste.lng]}
+                    icon={createFrontlightIcon(poste.code)}
                   >
-                    <Popup>
-                      <div className="p-2">
-                        <p className="font-bold text-sm">{poste.code}</p>
-                        <p className="text-xs text-gray-600">{poste.location}</p>
+                    <Popup className="custom-popup">
+                      <div className="p-3 min-w-[200px]">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="w-3 h-3 rounded-full bg-orange-500"></div>
+                          <p className="font-bold text-sm text-gray-900">{poste.code}</p>
+                          <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded">Frontlight</span>
+                        </div>
+                        <p className="text-xs text-gray-600 mb-1">{poste.location}</p>
+                        <div className="mt-2 pt-2 border-t border-gray-200">
+                          <p className="text-xs text-gray-500">
+                            <strong>Tipo:</strong> Painel Frontlight
+                          </p>
+                        </div>
                       </div>
                     </Popup>
                   </Marker>
@@ -457,17 +504,17 @@ export default function MapSection() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-              <div className="bg-white rounded-lg p-6 text-center shadow-md">
+              <div className="bg-gradient-to-br from-gray-900/80 via-gray-950/90 to-black border border-gray-800/40 rounded-lg p-6 text-center shadow-md backdrop-blur-sm">
                 <div className="text-3xl mb-3">🛣️</div>
-                <p className="text-gray-800">2º Maior Entroncamento Rodoviário</p>
+                <p className="text-white">2º Maior Entroncamento Rodoviário</p>
               </div>
-              <div className="bg-white rounded-lg p-6 text-center shadow-md">
+              <div className="bg-gradient-to-br from-gray-900/80 via-gray-950/90 to-black border border-gray-800/40 rounded-lg p-6 text-center shadow-md backdrop-blur-sm">
                 <div className="text-3xl mb-3">💰</div>
-                <p className="text-gray-800">3º Maior PIB da Bahia</p>
+                <p className="text-white">3º Maior PIB da Bahia</p>
               </div>
-              <div className="bg-white rounded-lg p-6 text-center shadow-md">
+              <div className="bg-gradient-to-br from-gray-900/80 via-gray-950/90 to-black border border-gray-800/40 rounded-lg p-6 text-center shadow-md backdrop-blur-sm">
                 <div className="text-3xl mb-3">🎯</div>
-                <p className="text-gray-800">Eixo Estratégico do Nordeste</p>
+                <p className="text-white">Eixo Estratégico do Nordeste</p>
               </div>
             </div>
           </div>
