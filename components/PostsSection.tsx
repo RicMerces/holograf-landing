@@ -23,7 +23,7 @@ export default function PostsSection() {
   const allPostes: Poste[] = [
     {
       id: 1,
-      code: 'Painel 1',
+      code: 'P0123B',
       image: '/assets/MapPoints/image.png',
       lat: -12.2562669,
       lng: -38.9321908,
@@ -34,8 +34,8 @@ export default function PostsSection() {
     },
     {
       id: 2,
-      code: 'P0141A',
-      image: '/assets/MapPoints/image1.png',
+      code: 'P0101A',
+      image: '/assets/MapPoints/image copy.png',
       lat: -12.2395308,
       lng: -38.9639961,
       location: 'Av. José Falcão da Silva',
@@ -45,8 +45,8 @@ export default function PostsSection() {
     },
     {
       id: 3,
-      code: 'P0141B',
-      image: '/assets/MapPoints/image2.png',
+      code: 'P0101B',
+      image: '/assets/MapPoints/image copy 1.png',
       lat: -12.2395308,
       lng: -38.9639961,
       location: 'Av. José Falcão da Silva',
@@ -57,7 +57,7 @@ export default function PostsSection() {
     {
       id: 4,
       code: 'P0104A',
-      image: '/assets/MapPoints/image3.png',
+      image: '/assets/MapPoints/image copy 2.png',
       lat: -12.259259,
       lng: -38.95207,
       location: 'Rua Go V. Juracy Magalhães, 102',
@@ -68,7 +68,7 @@ export default function PostsSection() {
     {
       id: 5,
       code: 'P0104B',
-      image: '/assets/MapPoints/image4.png',
+      image: '/assets/MapPoints/image copy 4.png',
       lat: -12.259259,
       lng: -38.95207,
       location: 'Rua Go V. Juracy Magalhães, 102',
@@ -78,8 +78,8 @@ export default function PostsSection() {
     },
     {
       id: 6,
-      code: 'P0145A',
-      image: '/assets/MapPoints/image5.png',
+      code: 'P0105A',
+      image: '/assets/MapPoints/image copy 5.png',
       lat: -12.2545038,
       lng: -38.9722801,
       location: 'Av. Getúlio Vargas',
@@ -89,8 +89,8 @@ export default function PostsSection() {
     },
     {
       id: 7,
-      code: 'P0145B',
-      image: '/assets/MapPoints/image6.png',
+      code: 'P0105B',
+      image: '/assets/MapPoints/image copy 6.png',
       lat: -12.2545038,
       lng: -38.9722801,
       location: 'Av. Getúlio Vargas',
@@ -100,8 +100,8 @@ export default function PostsSection() {
     },
     {
       id: 8,
-      code: 'P0146A',
-      image: '/assets/MapPoints/image7.png',
+      code: 'P0143A',
+      image: '/assets/MapPoints/image copy 7.png',
       lat: -12.2545038,
       lng: -38.9722801,
       location: 'Av. Getúlio Vargas',
@@ -111,8 +111,8 @@ export default function PostsSection() {
     },
     {
       id: 9,
-      code: 'P0146B',
-      image: '/assets/MapPoints/image8.png',
+      code: 'P0143B',
+      image: '/assets/MapPoints/image copy 8.png',
       lat: -12.2545038,
       lng: -38.9722801,
       location: 'Av. Getúlio Vargas',
@@ -122,8 +122,8 @@ export default function PostsSection() {
     },
     {
       id: 10,
-      code: 'P0137A',
-      image: '/assets/MapPoints/image9.png',
+      code: 'P0141A',
+      image: '/assets/MapPoints/image copy 9.png',
       lat: -12.2545038,
       lng: -38.9722801,
       location: 'Av. Getúlio Vargas',
@@ -133,8 +133,8 @@ export default function PostsSection() {
     },
     {
       id: 11,
-      code: 'P0137B',
-      image: '/assets/MapPoints/image10.png',
+      code: 'P0141B',
+      image: '/assets/MapPoints/image copy 10.png',
       lat: -12.2545038,
       lng: -38.9722801,
       location: 'Av. Getúlio Vargas',
@@ -144,8 +144,8 @@ export default function PostsSection() {
     },
     {
       id: 12,
-      code: 'P0143A',
-      image: '/assets/MapPoints/image11.png',
+      code: 'P0112A',
+      image: '/assets/MapPoints/image copy 11.png',
       lat: -12.241287,
       lng: -38.9640594,
       location: 'Av. José Falcão Silva',
@@ -155,8 +155,8 @@ export default function PostsSection() {
     },
     {
       id: 13,
-      code: 'P0143B',
-      image: '/assets/MapPoints/image12.png',
+      code: 'P0112B',
+      image: '/assets/MapPoints/image copy 12.png',
       lat: -12.241287,
       lng: -38.9640594,
       location: 'Av. José Falcão Silva',
@@ -166,8 +166,8 @@ export default function PostsSection() {
     },
     {
       id: 14,
-      code: 'P0129A',
-      image: '/assets/MapPoints/image13.png',
+      code: 'P0137A',
+      image: '/assets/MapPoints/image copy 13.png',
       lat: -12.233571,
       lng: -38.9485013,
       location: 'Av. Contorno, em frente ao Posto Mônaco',
@@ -177,8 +177,8 @@ export default function PostsSection() {
     },
     {
       id: 15,
-      code: 'P0129B',
-      image: '/assets/MapPoints/image14.png',
+      code: 'P0137B',
+      image: '/assets/MapPoints/image copy 14.png',
       lat: -12.233571,
       lng: -38.9485013,
       location: 'Av. Contorno, em frente ao Posto Mônaco',
@@ -188,8 +188,8 @@ export default function PostsSection() {
     },
     {
       id: 16,
-      code: 'P0147A',
-      image: '/assets/MapPoints/image15.png',
+      code: 'P0146A',
+      image: '/assets/MapPoints/image copy 16.png',
       lat: -12.2944132,
       lng: -38.9075144,
       location: 'Av. P. Dutra com a Rod. Vasco Filho (LIGHT) Entrada da cidade',
@@ -199,8 +199,8 @@ export default function PostsSection() {
     },
     {
       id: 17,
-      code: 'P0112A',
-      image: '/assets/MapPoints/image16.png',
+      code: 'P0146B',
+      image: '/assets/MapPoints/image copy 17.png',
       lat: -12.241287,
       lng: -38.9640594,
       location: 'Av. José Falcão Silva, esquina com a Av. Contorno',
@@ -210,8 +210,8 @@ export default function PostsSection() {
     },
     {
       id: 18,
-      code: 'P0112B',
-      image: '/assets/MapPoints/image17.png',
+      code: 'P0145A',
+      image: '/assets/MapPoints/image copy 18.png',
       lat: -12.241287,
       lng: -38.9640594,
       location: 'Av. José Falcão Silva, esquina com a Av. Contorno',
@@ -221,8 +221,8 @@ export default function PostsSection() {
     },
     {
       id: 19,
-      code: 'P0105A',
-      image: '/assets/MapPoints/image18.png',
+      code: 'P0145B',
+      image: '/assets/MapPoints/image copy 19.png',
       lat: -12.2495242,
       lng: -38.9486596,
       location: 'Av. João Durval Carneiro, esquina com a Rua P. Edelvira de Oliveira',
@@ -232,8 +232,8 @@ export default function PostsSection() {
     },
     {
       id: 20,
-      code: 'P0105B',
-      image: '/assets/MapPoints/image19.png',
+      code: 'P0119A',
+      image: '/assets/MapPoints/image copy 20.png',
       lat: -12.2495242,
       lng: -38.9486596,
       location: 'Av. João Durval Carneiro, esquina com a Rua P. Edelvira de Oliveira',
@@ -243,8 +243,8 @@ export default function PostsSection() {
     },
     {
       id: 21,
-      code: 'P0101A',
-      image: '/assets/MapPoints/image20.png',
+      code: 'P0119B',
+      image: '/assets/MapPoints/image copy 21.png',
       lat: -12.276649,
       lng: -38.9566151,
       location: 'Av. João Durval Carneiro',
@@ -254,8 +254,8 @@ export default function PostsSection() {
     },
     {
       id: 22,
-      code: 'P0101B',
-      image: '/assets/MapPoints/image21.png',
+      code: 'P0119B',
+      image: '/assets/MapPoints/image copy 22.png',
       lat: -12.276649,
       lng: -38.9566151,
       location: 'Av. João Durval Carneiro',
@@ -265,8 +265,8 @@ export default function PostsSection() {
     },
     {
       id: 23,
-      code: 'P0119A',
-      image: '/assets/MapPoints/image22.png',
+      code: 'P0151A',
+      image: '/assets/MapPoints/image copy 23.png',
       lat: -12.2604384,
       lng: -38.9658068,
       location: 'Av. Monsenhor Mário Pessoa',
@@ -276,8 +276,8 @@ export default function PostsSection() {
     },
     {
       id: 24,
-      code: 'P0119B',
-      image: '/assets/MapPoints/image23.png',
+      code: 'P0151B',
+      image: '/assets/MapPoints/image copy 24.png',
       lat: -12.2604384,
       lng: -38.9658068,
       location: 'Av. Monsenhor Mário Pessoa',
@@ -287,8 +287,8 @@ export default function PostsSection() {
     },
     {
       id: 25,
-      code: 'P0151A',
-      image: '/assets/MapPoints/image24.png',
+      code: 'P0152A',
+      image: '/assets/MapPoints/image copy 25.png',
       lat: -12.2774821,
       lng: -38.9406161,
       location: 'Av. Eduardo Fróes da Mota',
@@ -298,8 +298,8 @@ export default function PostsSection() {
     },
     {
       id: 26,
-      code: 'P0151B',
-      image: '/assets/MapPoints/image25.png',
+      code: 'P0152B',
+      image: '/assets/MapPoints/image copy 26.png',
       lat: -12.2774821,
       lng: -38.9406161,
       location: 'Av. Eduardo Fróes da Mota',
@@ -309,8 +309,8 @@ export default function PostsSection() {
     },
     {
       id: 27,
-      code: 'P0152A',
-      image: '/assets/MapPoints/image26.png',
+      code: 'P0150A',
+      image: '/assets/MapPoints/image copy 27.png',
       lat: -12.2774821,
       lng: -38.9406161,
       location: 'Av. Eduardo Fróes da Mota',
@@ -320,8 +320,8 @@ export default function PostsSection() {
     },
     {
       id: 28,
-      code: 'P0152B',
-      image: '/assets/MapPoints/image27.png',
+      code: 'P0150B',
+      image: '/assets/MapPoints/image copy 28.png',
       lat: -12.2774821,
       lng: -38.9406161,
       location: 'Av. Eduardo Fróes da Mota',
@@ -332,7 +332,7 @@ export default function PostsSection() {
     {
       id: 29,
       code: 'P0150A',
-      image: '/assets/MapPoints/image28.png',
+      image: '/assets/MapPoints/image copy 27.png',
       lat: -12.2720315,
       lng: -38.935805,
       location: 'Av. Eduardo Fróes da Mota',
@@ -343,7 +343,7 @@ export default function PostsSection() {
     {
       id: 30,
       code: 'P0150B',
-      image: '/assets/MapPoints/image29.png',
+      image: '/assets/MapPoints/image copy 28.png',
       lat: -12.2720315,
       lng: -38.935805,
       location: 'Av. Eduardo Fróes da Mota',
@@ -359,7 +359,7 @@ export default function PostsSection() {
     <section id="posts-section" className="py-24 bg-black text-white scroll-mt-16">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h3 className="mb-6 text-white text-4xl font-bold">
+          <h3 className="mb-6 text-white text-3xl md:text-4xl font-bold">
             Veja nossos principais postes
           </h3>
         </div>

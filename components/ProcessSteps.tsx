@@ -24,7 +24,7 @@ export default function ProcessSteps() {
     <section className="py-24 bg-black">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h3 className="mb-6 text-white">
+          <h3 className="mb-6 text-white text-3xl md:text-4xl font-bold">
             Um sistema completo, sem preocupação.
           </h3>
           <p className="text-gray-300 text-lg max-w-3xl mx-auto">

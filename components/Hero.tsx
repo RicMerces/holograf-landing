@@ -32,12 +32,12 @@ export default function Hero() {
           </div>
 
           {/* Right Side - Text Content */}
-          <div className="text-left lg:text-right">
-            <h1 className="mb-8 text-white drop-shadow-2xl text-left font-bold font-normal">
-              O Desafio não é Aparecer.<br />É Ser Lembrado.
+          <div >
+            <h1 className="mb-6 text-white text-3xl md:text-4xl font-bold">
+              SISTEMA DE VISIBILIDADE URBANA
             </h1>
             <p className="mb-12 text-gray-100 max-w-2xl md:text-xl leading-relaxed font-[Sora] text-[24px] font-bold drop-shadow-lg lg:ml-auto text-left">
-              Conheça o Sistema de Visibilidade Urbana da Holograf, desenhado para transformar presença em preferência no eixo estratégico do Nordeste: Feira de Santana.
+              MAIS IMPACTO, MAIS ALCANÇE, MAIS RETORNO.
             </p>
             <button
               onClick={scrollToSystem}

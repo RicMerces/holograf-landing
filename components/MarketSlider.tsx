@@ -39,7 +39,7 @@ export default function MarketSlider() {
     <section className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
-          <h3 className="mb-4 text-white text-[24px]">
+          <h3 className="mb-6 text-white text-3xl md:text-4xl font-bold">
             Empresas que já anunciaram/anunciam conosco
           </h3>
         </div>
