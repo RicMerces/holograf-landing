@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Dialog, DialogContentFullscreen } from './ui/dialog';
-import { X, MapPin, Search } from 'lucide-react';
+import { X, MapPin, Search, ExternalLink } from 'lucide-react';
 import { Input } from './ui/input';
+import MiniMap from './MiniMap';
+import { Button } from './ui/button';
 
 interface Poste {
   id: number;
@@ -19,12 +21,25 @@ interface AllPostsScreenProps {
   postes: Poste[];
   isOpen: boolean;
   onClose: () => void;
+  onOpenMap?: (poste: Poste) => void;
+  initialPoste?: Poste | null;
 }
 
-export default function AllPostsScreen({ postes, isOpen, onClose }: AllPostsScreenProps) {
-  const [selectedPoste, setSelectedPoste] = useState<Poste | null>(null);
+export default function AllPostsScreen({ postes, isOpen, onClose, onOpenMap, initialPoste }: AllPostsScreenProps) {
+  const [selectedPoste, setSelectedPoste] = useState<Poste | null>(initialPoste ?? null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedNeighborhood, setSelectedNeighborhood] = useState<string>('all');
+
+  // Atualizar o poste selecionado quando o modal abrir a partir de outra seção
+  useEffect(() => {
+    if (isOpen && initialPoste) {
+      setSelectedPoste(initialPoste);
+    }
+
+    if (!isOpen) {
+      setSelectedPoste(null);
+    }
+  }, [initialPoste, isOpen]);
 
   // Filtrar postes
   const filteredPostes = postes.filter((poste) => {
@@ -204,6 +219,28 @@ export default function AllPostsScreen({ postes, isOpen, onClose }: AllPostsScre
                     <p className="text-gray-600 text-sm">
                       Lat: {selectedPoste.lat}, Lng: {selectedPoste.lng}
                     </p>
+                  </div>
+
+                  {/* Minimapa */}
+                  <div className="pt-4 border-t mt-4">
+                    <p className="text-sm font-semibold text-gray-700 mb-3">Localização no mapa:</p>
+                    <MiniMap 
+                      lat={selectedPoste.lat} 
+                      lng={selectedPoste.lng} 
+                      code={selectedPoste.code}
+                    />
+                    {onOpenMap && (
+                      <Button
+                        onClick={() => {
+                          onOpenMap(selectedPoste);
+                          setSelectedPoste(null);
+                        }}
+                        className="w-full mt-4 bg-orange-600 hover:bg-orange-700 text-white flex items-center justify-center gap-2"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        Ver no mapa completo
+                      </Button>
+                    )}
                   </div>
                 </div>
               </div>

@@ -3,8 +3,10 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Dialog, DialogContentFullscreen } from './ui/dialog';
-import { X, Search, Home, MapPin, ChevronRight } from 'lucide-react';
+import { X, Search, Home, MapPin, ChevronRight, ExternalLink } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import MiniMap from './MiniMap';
+import { Button } from './ui/button';
 
 // Criar ícone customizado para painéis frontlight
 const createFrontlightIcon = (code: string) => {
@@ -30,7 +32,7 @@ const createFrontlightIcon = (code: string) => {
           font-weight: bold;
           font-size: 12px;
           text-align: center;
-        ">FL</div>
+        ">${code.substring(0, 2)}</div>
       </div>
     `,
     iconSize: [32, 32],
@@ -63,6 +65,7 @@ interface FullscreenMapProps {
   postes: Poste[];
   isOpen: boolean;
   onClose: () => void;
+  initialPoste?: Poste | null;
 }
 
 // Componente para ajustar o mapa quando abrir ou quando um painel for selecionado
@@ -88,8 +91,8 @@ function MapBounds({ postes, selectedPoste }: { postes: Poste[]; selectedPoste: 
   return null;
 }
 
-export default function FullscreenMap({ postes, isOpen, onClose }: FullscreenMapProps) {
-  const [selectedPoste, setSelectedPoste] = useState<Poste | null>(null);
+export default function FullscreenMap({ postes, isOpen, onClose, initialPoste = null }: FullscreenMapProps) {
+  const [selectedPoste, setSelectedPoste] = useState<Poste | null>(initialPoste);
   const [isClient, setIsClient] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -98,6 +101,13 @@ export default function FullscreenMap({ postes, isOpen, onClose }: FullscreenMap
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  // Atualizar selectedPoste quando initialPoste mudar
+  useEffect(() => {
+    if (initialPoste) {
+      setSelectedPoste(initialPoste);
+    }
+  }, [initialPoste]);
 
   // Filtrar postes baseado na busca
   const filteredPostes = useMemo(() => {
@@ -310,6 +320,27 @@ export default function FullscreenMap({ postes, isOpen, onClose }: FullscreenMap
                     <div>
                       <p className="text-sm font-semibold text-gray-700 mb-1">Proximidade:</p>
                       <p className="text-gray-900">{selectedPoste.proximity}</p>
+                    </div>
+
+                    {/* Minimapa */}
+                    <div className="pt-4 border-t mt-4">
+                      <p className="text-sm font-semibold text-gray-700 mb-3">Localização no mapa:</p>
+                      <MiniMap 
+                        lat={selectedPoste.lat} 
+                        lng={selectedPoste.lng} 
+                        code={selectedPoste.code}
+                      />
+                      <Button
+                        onClick={() => {
+                          // Focar no poste no mapa atual
+                          navigateToPoste(selectedPoste);
+                          setSelectedPoste(null);
+                        }}
+                        className="w-full mt-4 bg-orange-600 hover:bg-orange-700 text-white flex items-center justify-center gap-2"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        Focar no mapa
+                      </Button>
                     </div>
                   </div>
                 </div>

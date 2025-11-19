@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button } from './ui/button';
 import { MapPin } from 'lucide-react';
 import AllPostsScreen from './AllPostsScreen';
+import FullscreenMap from './FullscreenMap';
 
 interface Poste {
   id: number;
@@ -18,6 +19,9 @@ interface Poste {
 export default function PostsSection() {
   const [hoveredPoste, setHoveredPoste] = useState<number | null>(null);
   const [isAllPostsOpen, setIsAllPostsOpen] = useState(false);
+  const [isFullscreenMapOpen, setIsFullscreenMapOpen] = useState(false);
+  const [selectedPosteForMap, setSelectedPosteForMap] = useState<Poste | null>(null);
+  const [selectedPosteInModal, setSelectedPosteInModal] = useState<Poste | null>(null);
 
   // Todos os postes com dados reais
   const allPostes: Poste[] = [
@@ -25,331 +29,309 @@ export default function PostsSection() {
       id: 1,
       code: 'P0123B',
       image: '/assets/MapPoints/image.png',
-      lat: -12.2562669,
-      lng: -38.9321908,
-      location: 'Av. Contorno (2)',
+      lat: -12.247155,
+      lng: -38.975762,
+      location: 'Av. Contorno(2)',
       reference: 'Viaduto Getúlio Vargas, Noide Cerqueira',
       neighborhood: 'Sim',
-      proximity: 'Cruzamento da Av. Getúlio Vargas com a Av. Noide Cirqueira'
+      proximity: 'Viaduto Getúlio Vargas/Av. Nóide Cerqueira'
     },
     {
       id: 2,
       code: 'P0101A',
       image: '/assets/MapPoints/image copy.png',
-      lat: -12.2395308,
-      lng: -38.9639961,
-      location: 'Av. José Falcão da Silva',
-      reference: 'Maskate Distribuidora',
-      neighborhood: 'Queimadinha',
-      proximity: 'Complexo Viário Dr. Miraldo Gomes'
+      lat: -12.24883,
+      lng: -38.94846,
+      location: 'Av. João Durval Carneiro',
+      reference: 'Posto João Durval',
+      neighborhood: "Olhos D'agua",
+      proximity: 'Posto Kalilândia (Shell), Av. JD Carneiro, 2830'
     },
     {
       id: 3,
       code: 'P0101B',
       image: '/assets/MapPoints/image copy 1.png',
-      lat: -12.2395308,
-      lng: -38.9639961,
-      location: 'Av. José Falcão da Silva',
-      reference: 'Maskate Distribuidora',
-      neighborhood: 'Queimadinha',
-      proximity: 'Complexo Viário Dr. Miraldo Gomes'
+      lat: -12.24883,
+      lng: -38.94846,
+      location: 'Av. João Durval Carneiro',
+      reference: 'Posto João Durval',
+      neighborhood: "Olhos D'agua",
+      proximity: 'Posto Kalilândia (Shell), Av. JD Carneiro, 2830'
     },
     {
       id: 4,
       code: 'P0104A',
       image: '/assets/MapPoints/image copy 2.png',
-      lat: -12.259259,
-      lng: -38.95207,
+      lat: -12.246473,
+      lng: -38.932975,
       location: 'Rua Go V. Juracy Magalhães, 102',
       reference: 'Correios',
-      neighborhood: 'Brasilia',
-      proximity: 'Túnel Dr. Carlos Alberto Kruschewsky'
+      neighborhood: 'Brasília',
+      proximity: 'Approximate center of Juracy Magalhães street'
     },
     {
       id: 5,
       code: 'P0104B',
       image: '/assets/MapPoints/image copy 4.png',
-      lat: -12.259259,
-      lng: -38.95207,
+      lat: -12.246473,
+      lng: -38.932975,
       location: 'Rua Go V. Juracy Magalhães, 102',
       reference: 'Correios',
-      neighborhood: 'Brasilia',
-      proximity: 'Túnel Dr. Carlos Alberto Kruschewsky'
+      neighborhood: 'Brasília',
+      proximity: 'Approximate center of Juracy Magalhães street'
     },
     {
       id: 6,
       code: 'P0105A',
       image: '/assets/MapPoints/image copy 5.png',
-      lat: -12.2545038,
-      lng: -38.9722801,
-      location: 'Av. Getúlio Vargas',
-      reference: 'Estação Central (Localizado como "Estação Centro")',
-      neighborhood: 'Comércio',
-      proximity: 'Terminal Rodoviário Urbano, centro comercial, Centro de abastecimento, SAC'
+      lat: -12.25306,
+      lng: -38.95015,
+      location: 'Av. João Durval Carneiro, esquina com a Rua P. Edelvira de Oliveira',
+      reference: 'Justiça do Trabalho',
+      neighborhood: 'Caseb',
+      proximity: 'Fórum José Martins Catharino (Av. JD Carneiro, 2768)'
     },
     {
       id: 7,
       code: 'P0105B',
       image: '/assets/MapPoints/image copy 6.png',
-      lat: -12.2545038,
-      lng: -38.9722801,
-      location: 'Av. Getúlio Vargas',
-      reference: 'Estação Central (Localizado como "Estação Centro")',
-      neighborhood: 'Comércio',
-      proximity: 'Terminal Rodoviário Urbano, centro comercial, Centro de abastecimento, SAC'
+      lat: -12.25306,
+      lng: -38.95015,
+      location: 'Av. João Durval Carneiro, esquina com a Rua P. Edelvira de Oliveira',
+      reference: 'Justiça do Trabalho',
+      neighborhood: 'Caseb',
+      proximity: 'Fórum José Martins Catharino (Av. JD Carneiro, 2768)'
     },
     {
       id: 8,
       code: 'P0143A',
       image: '/assets/MapPoints/image copy 7.png',
-      lat: -12.2545038,
-      lng: -38.9722801,
-      location: 'Av. Getúlio Vargas',
-      reference: 'Estação Central (Localizado como "Estação Centro")',
-      neighborhood: 'Comércio',
-      proximity: 'Terminal Rodoviário Urbano, centro comercial, Centro de abastecimento, SAC'
+      lat: -12.26127,
+      lng: -38.97341,
+      location: 'Av. José Falcão Silva',
+      reference: 'Atakadão',
+      neighborhood: 'Baraúna',
+      proximity: 'Atakarejo, Av. José Falcão da Silva, 150'
     },
     {
       id: 9,
       code: 'P0143B',
       image: '/assets/MapPoints/image copy 8.png',
-      lat: -12.2545038,
-      lng: -38.9722801,
-      location: 'Av. Getúlio Vargas',
-      reference: 'Estação Central (Localizado como "Estação Centro")',
-      neighborhood: 'Comércio',
-      proximity: 'Terminal Rodoviário Urbano, centro comercial, Centro de abastecimento, SAC'
+      lat: -12.26127,
+      lng: -38.97341,
+      location: 'Av. José Falcão Silva',
+      reference: 'Atakadão',
+      neighborhood: 'Baraúna',
+      proximity: 'Atakarejo, Av. José Falcão da Silva, 150'
     },
     {
       id: 10,
       code: 'P0141A',
       image: '/assets/MapPoints/image copy 9.png',
-      lat: -12.2545038,
-      lng: -38.9722801,
-      location: 'Av. Getúlio Vargas',
-      reference: 'Estação Central (Localizado como "Estação Centro")',
-      neighborhood: 'Comércio',
-      proximity: 'Terminal Rodoviário Urbano, centro comercial, Centro de abastecimento, SAC'
+      lat: -12.25700,
+      lng: -38.96640,
+      location: 'Av. José Falcão da Silva',
+      reference: 'Maskate Distribuidora',
+      neighborhood: 'Queimadinha',
+      proximity: 'Based on Maskate area on Av. José Falcão da Silva'
     },
     {
       id: 11,
       code: 'P0141B',
       image: '/assets/MapPoints/image copy 10.png',
-      lat: -12.2545038,
-      lng: -38.9722801,
-      location: 'Av. Getúlio Vargas',
-      reference: 'Estação Central (Localizado como "Estação Centro")',
-      neighborhood: 'Comércio',
-      proximity: 'Terminal Rodoviário Urbano, centro comercial, Centro de abastecimento, SAC'
+      lat: -12.25700,
+      lng: -38.96640,
+      location: 'Av. José Falcão da Silva',
+      reference: 'Maskate Distribuidora',
+      neighborhood: 'Queimadinha',
+      proximity: 'Based on Maskate area on Av. José Falcão da Silva'
     },
     {
       id: 12,
       code: 'P0112A',
       image: '/assets/MapPoints/image copy 11.png',
-      lat: -12.241287,
-      lng: -38.9640594,
-      location: 'Av. José Falcão Silva',
-      reference: 'Atakadão (Localizado como "Atakarejo - Feira de Santana")',
+      lat: -12.26354,
+      lng: -38.97864,
+      location: 'Av. José Falcão Silva, esquina com a Av. Contorno',
+      reference: 'Contorno',
       neighborhood: 'Baraúna',
-      proximity: 'Escolas, centro comercial'
+      proximity: 'Intersection of Av. José Falcão and Av. Contorno'
     },
     {
       id: 13,
       code: 'P0112B',
       image: '/assets/MapPoints/image copy 12.png',
-      lat: -12.241287,
-      lng: -38.9640594,
-      location: 'Av. José Falcão Silva',
-      reference: 'Atakadão (Localizado como "Atakarejo - Feira de Santana")',
+      lat: -12.26354,
+      lng: -38.97864,
+      location: 'Av. José Falcão Silva, esquina com a Av. Contorno',
+      reference: 'Contorno',
       neighborhood: 'Baraúna',
-      proximity: 'Escolas, centro comercial'
+      proximity: 'Intersection of Av. José Falcão and Av. Contorno'
     },
     {
       id: 14,
       code: 'P0137A',
       image: '/assets/MapPoints/image copy 13.png',
-      lat: -12.233571,
-      lng: -38.9485013,
-      location: 'Av. Contorno, em frente ao Posto Mônaco',
-      reference: 'Posto Mônaco (Localizado como "POSTO MONACO - Ipiranga")',
-      neighborhood: 'São João',
-      proximity: 'Shopping Boulevard, Anel de Contorno de Feira'
+      lat: -12.25890,
+      lng: -38.95550,
+      location: 'Av. Getúlio Vargas',
+      reference: 'Estação Central',
+      neighborhood: 'Comércio',
+      proximity: 'Central part of Av. Getúlio Vargas, near the old Estação/Terminal'
     },
     {
       id: 15,
       code: 'P0137B',
       image: '/assets/MapPoints/image copy 14.png',
-      lat: -12.233571,
-      lng: -38.9485013,
-      location: 'Av. Contorno, em frente ao Posto Mônaco',
-      reference: 'Posto Mônaco (Localizado como "POSTO MONACO - Ipiranga")',
-      neighborhood: 'São João',
-      proximity: 'Shopping Boulevard, Anel de Contorno de Feira'
+      lat: -12.25890,
+      lng: -38.95550,
+      location: 'Av. Getúlio Vargas',
+      reference: 'Estação Central',
+      neighborhood: 'Comércio',
+      proximity: 'Central part of Av. Getúlio Vargas, near the old Estação/Terminal'
     },
     {
       id: 16,
       code: 'P0146A',
       image: '/assets/MapPoints/image copy 16.png',
-      lat: -12.2944132,
-      lng: -38.9075144,
-      location: 'Av. P. Dutra com a Rod. Vasco Filho (LIGHT) Entrada da cidade',
-      reference: 'G-LIGHT (Localizado como "G-LIGHT / TRONORD")',
-      neighborhood: 'Aviário',
-      proximity: 'Entrada da cidade, UNEF, polo de concessionárias'
+      lat: -12.25890,
+      lng: -38.95550,
+      location: 'Av. Getúlio Vargas',
+      reference: 'Estação Central',
+      neighborhood: 'Comércio',
+      proximity: 'Central part of Av. Getúlio Vargas, near the old Estação/Terminal'
     },
     {
       id: 17,
       code: 'P0146B',
       image: '/assets/MapPoints/image copy 17.png',
-      lat: -12.241287,
-      lng: -38.9640594,
-      location: 'Av. José Falcão Silva, esquina com a Av. Contorno',
-      reference: 'Contorno (Coordenada aproximada da esquina, usando "Atakarejo" como referência próxima)',
-      neighborhood: 'Baraúna',
-      proximity: 'Escolas, Centro Comercial, Feiraguay, Mercados, UEFS'
+      lat: -12.25890,
+      lng: -38.95550,
+      location: 'Av. Getúlio Vargas',
+      reference: 'Estação Central',
+      neighborhood: 'Comércio',
+      proximity: 'Central part of Av. Getúlio Vargas, near the old Estação/Terminal'
     },
     {
       id: 18,
       code: 'P0145A',
       image: '/assets/MapPoints/image copy 18.png',
-      lat: -12.241287,
-      lng: -38.9640594,
-      location: 'Av. José Falcão Silva, esquina com a Av. Contorno',
-      reference: 'Contorno (Coordenada aproximada da esquina, usando "Atakarejo" como referência próxima)',
-      neighborhood: 'Baraúna',
-      proximity: 'Escolas, Centro Comercial, Feiraguay, Mercados, UEFS'
+      lat: -12.25890,
+      lng: -38.95550,
+      location: 'Av. Getúlio Vargas',
+      reference: 'Estação Central',
+      neighborhood: 'Comércio',
+      proximity: 'Central part of Av. Getúlio Vargas, near the old Estação/Terminal'
     },
     {
       id: 19,
       code: 'P0145B',
       image: '/assets/MapPoints/image copy 19.png',
-      lat: -12.2495242,
-      lng: -38.9486596,
-      location: 'Av. João Durval Carneiro, esquina com a Rua P. Edelvira de Oliveira',
-      reference: 'Justiça do Trabalho (Localizado como "Tribunal Regional Do Trabalho")',
-      neighborhood: 'Caseb',
-      proximity: 'Shopping Boulevard'
+      lat: -12.25890,
+      lng: -38.95550,
+      location: 'Av. Getúlio Vargas',
+      reference: 'Estação Central',
+      neighborhood: 'Comércio',
+      proximity: 'Central part of Av. Getúlio Vargas, near the old Estação/Terminal'
     },
     {
       id: 20,
       code: 'P0119A',
       image: '/assets/MapPoints/image copy 20.png',
-      lat: -12.2495242,
-      lng: -38.9486596,
-      location: 'Av. João Durval Carneiro, esquina com a Rua P. Edelvira de Oliveira',
-      reference: 'Justiça do Trabalho (Localizado como "Tribunal Regional Do Trabalho")',
-      neighborhood: 'Caseb',
-      proximity: 'Shopping Boulevard'
+      lat: -12.25368,
+      lng: -38.96251,
+      location: 'Av. Monsenhor Mário Pessoa',
+      reference: 'Colégio Padre Ovídio',
+      neighborhood: 'Centro',
+      proximity: 'Near Colégio Padre Ovídio (Av. Senhor dos Passos, 3000)'
     },
     {
       id: 21,
       code: 'P0119B',
       image: '/assets/MapPoints/image copy 21.png',
-      lat: -12.276649,
-      lng: -38.9566151,
-      location: 'Av. João Durval Carneiro',
-      reference: 'Posto João Durval',
-      neighborhood: "Olhos D'agua",
-      proximity: 'Igrejas, área residencial de grande fluxo, Laboratórios'
+      lat: -12.25368,
+      lng: -38.96251,
+      location: 'Av. Monsenhor Mário Pessoa',
+      reference: 'Colégio Padre Ovídio',
+      neighborhood: 'Centro',
+      proximity: 'Near Colégio Padre Ovídio (Av. Senhor dos Passos, 3000)'
     },
     {
       id: 22,
-      code: 'P0119B',
+      code: 'P0147A',
       image: '/assets/MapPoints/image copy 22.png',
-      lat: -12.276649,
-      lng: -38.9566151,
-      location: 'Av. João Durval Carneiro',
-      reference: 'Posto João Durval',
-      neighborhood: "Olhos D'agua",
-      proximity: 'Igrejas, área residencial de grande fluxo, Laboratórios'
+      lat: -12.20815,
+      lng: -38.96690,
+      location: 'Av. P. Dutra com a Rod. Vasco Filho (LIGHT) Entrada da cidade',
+      reference: 'G-LIGHT',
+      neighborhood: 'Aviário',
+      proximity: 'Intersection of BR-324 (Rod. Vasco Filho) and Av. Presidente Dutra (Area)'
     },
     {
       id: 23,
-      code: 'P0151A',
+      code: 'P0129A',
       image: '/assets/MapPoints/image copy 23.png',
-      lat: -12.2604384,
-      lng: -38.9658068,
-      location: 'Av. Monsenhor Mário Pessoa',
-      reference: 'Colégio Padre Ovídio',
-      neighborhood: 'Centro',
-      proximity: 'Escola, Farmácia'
+      lat: -12.24760,
+      lng: -38.95870,
+      location: 'Av. Contorno, em frente ao Posto Mônaco',
+      reference: 'Posto Mônaco',
+      neighborhood: 'São João',
+      proximity: 'Near Posto Mônaco (R. Tupinambás, 4000)'
     },
     {
       id: 24,
-      code: 'P0151B',
+      code: 'P0129B',
       image: '/assets/MapPoints/image copy 24.png',
-      lat: -12.2604384,
-      lng: -38.9658068,
-      location: 'Av. Monsenhor Mário Pessoa',
-      reference: 'Colégio Padre Ovídio',
-      neighborhood: 'Centro',
-      proximity: 'Escola, Farmácia'
+      lat: -12.24760,
+      lng: -38.95870,
+      location: 'Av. Contorno, em frente ao Posto Mônaco',
+      reference: 'Posto Mônaco',
+      neighborhood: 'São João',
+      proximity: 'Near Posto Mônaco (R. Tupinambás, 4000)'
     },
     {
       id: 25,
       code: 'P0152A',
       image: '/assets/MapPoints/image copy 25.png',
-      lat: -12.2774821,
-      lng: -38.9406161,
+      lat: -12.25875,
+      lng: -38.93980,
       location: 'Av. Eduardo Fróes da Mota',
-      reference: 'Hospital Clériston Andrade (Localizado como "Hospital Geral Clériston Andrade")',
+      reference: 'Hospital Clériston Andrade',
       neighborhood: 'Brasília',
-      proximity: 'Hospital'
+      proximity: 'Hospital Clériston Andrade, Av. Eduardo Fróes da Mota'
     },
     {
       id: 26,
       code: 'P0152B',
       image: '/assets/MapPoints/image copy 26.png',
-      lat: -12.2774821,
-      lng: -38.9406161,
+      lat: -12.25875,
+      lng: -38.93980,
       location: 'Av. Eduardo Fróes da Mota',
-      reference: 'Hospital Clériston Andrade (Localizado como "Hospital Geral Clériston Andrade")',
+      reference: 'Hospital Clériston Andrade',
       neighborhood: 'Brasília',
-      proximity: 'Hospital'
+      proximity: 'Hospital Clériston Andrade, Av. Eduardo Fróes da Mota'
     },
     {
       id: 27,
       code: 'P0150A',
       image: '/assets/MapPoints/image copy 27.png',
-      lat: -12.2774821,
-      lng: -38.9406161,
-      location: 'Av. Eduardo Fróes da Mota',
-      reference: 'Hospital Clériston Andrade (Localizado como "Hospital Geral Clériston Andrade")',
-      neighborhood: 'Brasília',
-      proximity: 'Hospital'
+      lat: -12.22272,
+      lng: -38.93888,
+      location: 'Av. Eduardo Fróes da Mota,',
+      reference: 'Complexo Viário Portal do Sertão',
+      neighborhood: 'Santa Mônica',
+      proximity: 'Near the Portal do Sertão Complex on Av. Eduardo Fróes da Mota'
     },
     {
       id: 28,
       code: 'P0150B',
       image: '/assets/MapPoints/image copy 28.png',
-      lat: -12.2774821,
-      lng: -38.9406161,
-      location: 'Av. Eduardo Fróes da Mota',
-      reference: 'Hospital Clériston Andrade (Localizado como "Hospital Geral Clériston Andrade")',
-      neighborhood: 'Brasília',
-      proximity: 'Hospital'
-    },
-    {
-      id: 29,
-      code: 'P0150A',
-      image: '/assets/MapPoints/image copy 27.png',
-      lat: -12.2720315,
-      lng: -38.935805,
-      location: 'Av. Eduardo Fróes da Mota',
+      lat: -12.22272,
+      lng: -38.93888,
+      location: 'Av. Eduardo Fróes da Mota,',
       reference: 'Complexo Viário Portal do Sertão',
       neighborhood: 'Santa Mônica',
-      proximity: 'Bremen VolksWagen, Concessionária Fiat'
-    },
-    {
-      id: 30,
-      code: 'P0150B',
-      image: '/assets/MapPoints/image copy 28.png',
-      lat: -12.2720315,
-      lng: -38.935805,
-      location: 'Av. Eduardo Fróes da Mota',
-      reference: 'Complexo Viário Portal do Sertão',
-      neighborhood: 'Santa Mônica',
-      proximity: 'Bremen VolksWagen, Concessionária Fiat'
+      proximity: 'Near the Portal do Sertão Complex on Av. Eduardo Fróes da Mota'
     }
   ];
 
@@ -372,6 +354,10 @@ export default function PostsSection() {
               className="relative group cursor-pointer overflow-hidden rounded-xl border border-gray-800/40 bg-gradient-to-br from-gray-900/80 via-gray-950/90 to-black backdrop-blur-sm"
               onMouseEnter={() => setHoveredPoste(poste.id)}
               onMouseLeave={() => setHoveredPoste(null)}
+              onClick={() => {
+                setSelectedPosteInModal(poste);
+                setIsAllPostsOpen(true);
+              }}
             >
               {/* Imagem do poste */}
               <div className="aspect-[4/3] overflow-hidden">
@@ -402,7 +388,10 @@ export default function PostsSection() {
         {/* Botão "Veja todos" */}
         <div className="text-center">
           <Button 
-            onClick={() => setIsAllPostsOpen(true)}
+          onClick={() => {
+            setSelectedPosteInModal(null);
+            setIsAllPostsOpen(true);
+          }}
             variant="outline" 
             className="bg-orange-600 hover:bg-orange-700 text-white border-orange-600 px-8 py-6 text-lg font-semibold"
           >
@@ -415,7 +404,27 @@ export default function PostsSection() {
       <AllPostsScreen
         postes={allPostes}
         isOpen={isAllPostsOpen}
-        onClose={() => setIsAllPostsOpen(false)}
+        onClose={() => {
+          setIsAllPostsOpen(false);
+          setSelectedPosteInModal(null);
+        }}
+        onOpenMap={(poste) => {
+          setSelectedPosteForMap(poste);
+          setIsAllPostsOpen(false);
+          setIsFullscreenMapOpen(true);
+        }}
+        initialPoste={selectedPosteInModal}
+      />
+
+      {/* Mapa Fullscreen */}
+      <FullscreenMap
+        postes={allPostes}
+        isOpen={isFullscreenMapOpen}
+        onClose={() => {
+          setIsFullscreenMapOpen(false);
+          setSelectedPosteForMap(null);
+        }}
+        initialPoste={selectedPosteForMap}
       />
     </section>
   );
